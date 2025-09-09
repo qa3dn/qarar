@@ -13,7 +13,7 @@
 
 ### 3. **إعدادات الخدمة:**
 - **Name**: `qarar-backend`
-- **Root Directory**: `backend`
+- **Root Directory**: (اتركه فارغ)
 - **Environment**: `Node`
 - **Build Command**: `npm install`
 - **Start Command**: `npm start`
