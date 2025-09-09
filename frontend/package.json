@@ -1,0 +1,17 @@
+{
+  "name": "qarar-frontend",
+  "version": "1.0.0",
+  "description": "قررلي - Frontend Website",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "npx http-server public -p 3000",
+    "dev": "npx http-server public -p 3000 -o"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {},
+  "keywords": ["frontend", "website", "arabic", "decision"],
+  "author": "Qarar Team",
+  "license": "MIT"
+}

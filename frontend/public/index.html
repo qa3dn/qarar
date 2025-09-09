@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قررلي - قرارات عشوائية لحياتك</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- خلفية النجوم المتحركة -->
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <!-- القمر -->
+    <div class="moon"></div>
+
+    <!-- الصاروخ المتحرك -->
+    <div class="rocket">
+        <div class="rocket-body">
+            <div class="rocket-window"></div>
+        </div>
+        <div class="rocket-flame"></div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <!-- الشعار والتنقل -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🎲</div>
+                <h1 class="logo-text">قررلي</h1>
+            </div>
+            
+            <!-- أزرار تسجيل الدخول والملف الشخصي -->
+            <div class="auth-buttons" id="authButtons">
+                <button class="login-btn" onclick="goToLogin()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>تسجيل الدخول</span>
+                </button>
+                <button class="register-btn" onclick="goToRegister()">
+                    <i class="fas fa-user-plus"></i>
+                    <span>إنشاء حساب</span>
+                </button>
+            </div>
+            
+            <!-- معلومات المستخدم (تظهر بعد تسجيل الدخول) -->
+            <div class="user-info" id="userInfo" style="display: none;">
+                <div class="user-avatar" onclick="toggleUserMenu()">
+                    <img id="userAvatar" src="/images/default-avatar.png" alt="الصورة الشخصية">
+                    <span id="userName">المستخدم</span>
+                </div>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <a href="/profile" class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <span>الملف الشخصي</span>
+                    </a>
+                    <a href="#" class="menu-item" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>تسجيل الخروج</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- الجملة التحفيزية -->
+        <div class="hero-text">
+            <h2 class="main-title">مش عارف شو تعمل؟</h2>
+            
+        </div>
+
+        <!-- قسم الأسئلة المخصصة - الرئيسي -->
+        <div class="custom-question-section main-section">
+            <h4 class="question-title">فضفضلي وأنا بقررلك كلشي</h4>
+            <div class="question-input-container">
+                <input type="text" id="customQuestion" class="question-input" placeholder="مثال: مش عارف شو أشتري، أو مش عارف أروح على الشغل ولا لا...">
+            </div>
+        </div>
+
+        <!-- الزر الرئيسي للإجابة على السؤال -->
+        <div class="decision-section">
+            <button id="decisionBtn" class="decision-btn" onclick="askCustomQuestion()">
+                <span class="btn-text">🎲 قررلي!</span>
+                <div class="btn-glow"></div>
+            </button>
+        </div>
+
+        <!-- نتيجة القرار -->
+        <div id="resultCard" class="result-card hidden">
+            <div class="card-content">
+                <div class="card-icon">✨</div>
+                <h3 id="decisionText" class="decision-text"></h3>
+                <div class="card-category" id="categoryText"></div>
+            </div>
+            <div class="card-glow"></div>
+        </div>
+
+        <!-- أزرار المشاركة -->
+        <div id="shareButtons" class="share-buttons hidden">
+            <button class="share-btn image-share" onclick="shareAsImage()">
+                <i class="fas fa-image"></i>
+                <span>شارك كصورة</span>
+            </button>
+            <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="share-btn instagram" onclick="shareOnInstagram()">
+                <i class="fab fa-instagram"></i>
+            </button>
+            <button class="share-btn twitter" onclick="shareOnTwitter()">
+                <img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="X" style="width: 20px; height: 20px;">
+                <span>X</span>
+            </button>
+        </div>
+
+
+        <!-- زر القرارات الجدية -->
+        <div class="premium-section">
+            <a href="/premium" class="premium-btn" style="text-decoration: none; display: inline-flex;">
+                <i class="fas fa-crown"></i>
+                <span>قرارات جدية جداً</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- الكواكب المتحركة -->
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    <div class="planet planet-3"></div>
+
+    <!-- الأقمار الصناعية -->
+    <div class="satellite satellite-1">
+        <div class="satellite-body"></div>
+        <div class="satellite-antenna"></div>
+    </div>
+    <div class="satellite satellite-2">
+        <div class="satellite-body"></div>
+        <div class="satellite-antenna"></div>
+    </div>
+
+    <!-- رسائل التنبيه -->
+    <div class="message" id="message"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

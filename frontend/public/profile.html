@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - قررلي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- خلفية النجوم -->
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+    
+    <!-- القمر -->
+    <div class="moon"></div>
+    
+    <!-- الكواكب -->
+    <div class="planet planet1"></div>
+    <div class="planet planet2"></div>
+    <div class="planet planet3"></div>
+    
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <!-- الهيدر -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🎲</div>
+                <h1 class="logo-text">قررلي</h1>
+            </div>
+            
+            <!-- معلومات المستخدم -->
+            <div class="user-info" id="userInfo">
+                <div class="user-avatar" onclick="toggleUserMenu()">
+                    <img id="userAvatar" src="/images/default-avatar.png" alt="الصورة الشخصية">
+                    <span id="userName">المستخدم</span>
+                </div>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <a href="/" class="menu-item">
+                        <i class="fas fa-home"></i>
+                        <span>الرئيسية</span>
+                    </a>
+                    <a href="#" class="menu-item" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>تسجيل الخروج</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        
+        <!-- بطاقة الملف الشخصي -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar" id="profileAvatar">
+                        <img id="avatarImg" src="/images/default-avatar.png" alt="الصورة الشخصية">
+                        <div class="avatar-upload" onclick="uploadAvatar()">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                    </div>
+                    <h2 id="profileName">اسم المستخدم</h2>
+                    <p id="profileUsername">@username</p>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">🎲</div>
+                        <div class="stat-number" id="totalDecisions">0</div>
+                        <div class="stat-label">إجمالي القرارات</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">✨</div>
+                        <div class="stat-number" id="todayDecisions">0</div>
+                        <div class="stat-label">قرارات اليوم</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">❓</div>
+                        <div class="stat-number" id="totalQuestions">0</div>
+                        <div class="stat-label">إجمالي الأسئلة</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">🧠</div>
+                        <div class="stat-number" id="todayQuestions">0</div>
+                        <div class="stat-label">أسئلة اليوم</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- معلومات إضافية -->
+            <div class="profile-info">
+                <div class="info-section">
+                    <h3>معلومات الحساب</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>البريد الإلكتروني:</label>
+                            <span id="profileEmail">user@example.com</span>
+                        </div>
+                        <div class="info-item">
+                            <label>تاريخ الانضمام:</label>
+                            <span id="joinDate">يناير 2024</span>
+                        </div>
+                        <div class="info-item">
+                            <label>آخر نشاط:</label>
+                            <span id="lastActive">اليوم</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- الإنجازات والشارات -->
+                <div class="info-section">
+                    <h3>🏆 الإنجازات والشارات</h3>
+                    <div class="achievements-grid" id="achievementsGrid">
+                        <!-- سيتم تحميل الإنجازات هنا -->
+                    </div>
+                </div>
+                
+                <!-- متتبع المزاج -->
+                <div class="info-section">
+                    <h3>😊 مزاجك اليوم</h3>
+                    <div class="mood-tracker">
+                        <div class="mood-options">
+                            <button class="mood-btn" data-mood="happy" title="سعيد">😄</button>
+                            <button class="mood-btn" data-mood="excited" title="متحمس">🤩</button>
+                            <button class="mood-btn" data-mood="calm" title="هادئ">😌</button>
+                            <button class="mood-btn" data-mood="confused" title="محتار">🤔</button>
+                            <button class="mood-btn" data-mood="stressed" title="متوتر">😰</button>
+                        </div>
+                        <div class="mood-message" id="moodMessage">اختر مزاجك اليوم!</div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        
+        
+        
+        <!-- زر العودة للرئيسية -->
+        <div class="back-home">
+            <a href="/" class="back-btn">
+                <i class="fas fa-home"></i>
+                <span>العودة للرئيسية</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- رسائل التنبيه -->
+    <div class="message" id="message"></div>
+    
+    <script>
+        let currentUser = null;
+        
+        // تهيئة الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM تم تحميله');
+            
+            checkAuth();
+            
+            // تأخير بسيط للتأكد من تحميل العناصر
+            setTimeout(() => {
+                console.log('بدء تحميل البيانات...');
+                loadProfile();
+                setupEventListeners();
+                loadAchievements();
+                loadMoodTracker();
+            }, 100);
+        });
+        
+        // التحقق من تسجيل الدخول
+        function checkAuth() {
+            console.log('=== التحقق من تسجيل الدخول ===');
+            const token = localStorage.getItem('token');
+            const user = localStorage.getItem('user');
+            
+            console.log('Token موجود:', !!token);
+            console.log('User موجود:', !!user);
+            
+            if (!token || !user) {
+                console.log('إعادة توجيه إلى صفحة تسجيل الدخول');
+                window.location.href = '/login';
+                return;
+            }
+            
+            try {
+                currentUser = JSON.parse(user);
+                console.log('currentUser تم تحميله:', currentUser);
+                updateUserInfo();
+            } catch (error) {
+                console.error('خطأ في تحليل بيانات المستخدم:', error);
+                logout();
+            }
+        }
+        
+        // تحديث معلومات المستخدم في الهيدر
+        function updateUserInfo() {
+            const userAvatar = document.getElementById('userAvatar');
+            const userName = document.getElementById('userName');
+            
+            if (userAvatar && currentUser.profilePicture && currentUser.profilePicture !== '/images/default-avatar.png') {
+                userAvatar.src = currentUser.profilePicture + '?t=' + Date.now();
+            }
+            
+            if (userName) {
+                const displayName = currentUser.username || currentUser.firstName || 'المستخدم';
+                userName.textContent = displayName;
+            }
+        }
+        
+        // تحميل الملف الشخصي
+        async function loadProfile() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`/api/profile/${currentUser.username}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const profile = await response.json();
+                    displayProfile(profile);
+                } else {
+                    showMessage('خطأ في تحميل الملف الشخصي', 'error');
+                }
+            } catch (error) {
+                console.error('خطأ في تحميل الملف الشخصي:', error);
+                showMessage('حدث خطأ في الاتصال', 'error');
+            }
+        }
+        
+        // عرض الملف الشخصي
+        function displayProfile(profile) {
+            console.log('Profile data:', profile); // للتصحيح
+            
+            // اسم المستخدم والصورة
+            const fullName = [profile.firstName, profile.lastName].filter(Boolean).join(' ') || profile.username || 'مستخدم';
+            document.getElementById('profileName').textContent = fullName;
+            document.getElementById('profileUsername').textContent = '@' + (profile.username || 'user');
+            document.getElementById('profileEmail').textContent = profile.email || '';
+            
+            
+            // الصورة الشخصية
+            if (profile.profilePicture && profile.profilePicture !== '/images/default-avatar.png') {
+                document.getElementById('avatarImg').src = profile.profilePicture;
+                // تحديث الصورة في الهيدر أيضاً
+                const headerAvatar = document.getElementById('userAvatar');
+                if (headerAvatar) {
+                    headerAvatar.src = profile.profilePicture;
+                }
+            }
+            
+            // الإحصائيات
+            document.getElementById('totalDecisions').textContent = profile.stats.totalDecisions || 0;
+            document.getElementById('todayDecisions').textContent = profile.stats.todayDecisions || 0;
+            document.getElementById('totalQuestions').textContent = profile.stats.totalQuestions || 0;
+            document.getElementById('todayQuestions').textContent = profile.stats.todayQuestions || 0;
+            
+            // التواريخ
+            if (profile.joinDate) {
+                const joinDate = new Date(profile.joinDate);
+                document.getElementById('joinDate').textContent = joinDate.toLocaleDateString('ar-SA');
+            }
+            
+            // آخر نشاط
+            if (profile.lastActive) {
+                document.getElementById('lastActive').textContent = formatDate(new Date(profile.lastActive));
+            } else {
+                document.getElementById('lastActive').textContent = 'اليوم';
+            }
+            
+            // تحديث اسم المستخدم في الهيدر أيضاً
+            const headerUserName = document.getElementById('userName');
+            if (headerUserName) {
+                headerUserName.textContent = profile.username || fullName;
+            }
+        }
+        
+        
+        
+        
+        // رفع الصورة الشخصية
+        function uploadAvatar() {
+            document.getElementById('avatarInput').click();
+        }
+        
+        
+        // إعداد الأحداث
+        function setupEventListeners() {
+            
+            // رفع الصورة
+            document.getElementById('avatarInput').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    uploadAvatarFile(file);
+                }
+            });
+        }
+        
+        // رفع ملف الصورة
+        async function uploadAvatarFile(file) {
+            const formData = new FormData();
+            formData.append('avatar', file);
+            
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`/api/profile/${currentUser.username}/avatar`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    // تحديث الصورة في الملف الشخصي
+                    document.getElementById('avatarImg').src = data.profilePicture + '?t=' + Date.now();
+                    // تحديث الصورة في الهيدر
+                    const headerAvatar = document.getElementById('userAvatar');
+                    if (headerAvatar) {
+                        headerAvatar.src = data.profilePicture + '?t=' + Date.now();
+                    }
+                    // تحديث البيانات المحفوظة
+                    if (currentUser) {
+                        currentUser.profilePicture = data.profilePicture;
+                        localStorage.setItem('user', JSON.stringify(currentUser));
+                    }
+                    showMessage('تم تحديث الصورة الشخصية بنجاح! 📸', 'success');
+                } else {
+                    showMessage('خطأ في رفع الصورة', 'error');
+                }
+            } catch (error) {
+                console.error('خطأ في رفع الصورة:', error);
+                showMessage('حدث خطأ في الاتصال', 'error');
+            }
+        }
+        
+        // تبديل قائمة المستخدم
+        function toggleUserMenu() {
+            const userMenu = document.getElementById('userMenu');
+            userMenu.style.display = userMenu.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // تسجيل الخروج
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/';
+        }
+        
+        // تنسيق التاريخ
+        function formatDate(date) {
+            const now = new Date();
+            const diff = now - date;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            
+            if (days === 0) {
+                return 'اليوم';
+            } else if (days === 1) {
+                return 'أمس';
+            } else if (days < 7) {
+                return `منذ ${days} أيام`;
+            } else {
+                return date.toLocaleDateString('ar-SA');
+            }
+        }
+        
+        // إظهار رسالة
+        function showMessage(message, type = 'info') {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = message;
+            messageEl.className = `message message-${type}`;
+            messageEl.style.display = 'block';
+            
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 5000);
+        }
+        
+        // تحميل الإنجازات
+        async function loadAchievements() {
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`/api/profile/${currentUser.username}/achievements`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    displayAchievements(data.achievements);
+                } else {
+                    // عرض الإنجازات الافتراضية عند الخطأ
+                    displayDefaultAchievements();
+                }
+            } catch (error) {
+                console.error('خطأ في تحميل الإنجازات:', error);
+                displayDefaultAchievements();
+            }
+        }
+        
+        // عرض الإنجازات
+        function displayAchievements(achievements) {
+            const grid = document.getElementById('achievementsGrid');
+            grid.innerHTML = achievements.map(achievement => `
+                <div class="achievement-item ${achievement.unlocked ? 'unlocked' : 'locked'}">
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <div class="achievement-info">
+                        <h4>${achievement.title}</h4>
+                        <p>${achievement.description}</p>
+                        ${achievement.progress !== undefined ? `
+                            <div class="achievement-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${(achievement.progress / achievement.total) * 100}%"></div>
+                                </div>
+                                <span class="progress-text">${achievement.progress}/${achievement.total}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    ${achievement.unlocked ? '<div class="achievement-badge">✅</div>' : '<div class="achievement-badge">🔒</div>'}
+                </div>
+            `).join('');
+        }
+        
+        // عرض الإنجازات الافتراضية
+        function displayDefaultAchievements() {
+            const achievements = [
+                { title: 'أول قرار', description: 'اتخذت أول قرار!', icon: '🎯', unlocked: false },
+                { title: 'خبير القرارات', description: 'اتخذت 50 قرار', icon: '🏆', unlocked: false },
+                { title: 'خبير الأسئلة', description: 'سألت 25 سؤال', icon: '🧠', unlocked: false },
+                { title: 'مستخدم يومي', description: 'استخدمت التطبيق 7 أيام متتالية', icon: '🔥', unlocked: false },
+                { title: 'المشارك الاجتماعي', description: 'شاركت 10 قرارات', icon: '📱', unlocked: false },
+                { title: 'متتبع المزاج', description: 'سجلت مزاجك 5 أيام', icon: '😊', unlocked: false }
+            ];
+            
+            displayAchievements(achievements);
+        }
+        
+        // تحميل متتبع المزاج
+        async function loadMoodTracker() {
+            const moodBtns = document.querySelectorAll('.mood-btn');
+            
+            // جلب مزاج اليوم من الباك أند
+            try {
+                const token = localStorage.getItem('token');
+                const response = await fetch(`/api/profile/${currentUser.username}/mood/today`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.mood) {
+                        const moodElement = document.querySelector(`[data-mood="${data.mood.mood}"]`);
+                        if (moodElement) {
+                            moodElement.classList.add('selected');
+                            updateMoodMessage(data.mood.mood);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('خطأ في تحميل المزاج:', error);
+            }
+            
+            moodBtns.forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const mood = this.dataset.mood;
+                    
+                    // إزالة التحديد من الأزرار الأخرى
+                    moodBtns.forEach(b => b.classList.remove('selected'));
+                    
+                    // تحديد الزر الحالي
+                    this.classList.add('selected');
+                    
+                    // حفظ المزاج في الباك أند
+                    try {
+                        const token = localStorage.getItem('token');
+                        const response = await fetch(`/api/profile/${currentUser.username}/mood`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ 
+                                mood: mood,
+                                message: getMoodMessage(mood)
+                            })
+                        });
+                        
+                        if (response.ok) {
+                            showMessage('تم حفظ مزاجك بنجاح! 😊', 'success');
+                        }
+                    } catch (error) {
+                        console.error('خطأ في حفظ المزاج:', error);
+                        showMessage('حدث خطأ في حفظ المزاج', 'error');
+                    }
+                    
+                    // تحديث الرسالة
+                    updateMoodMessage(mood);
+                    
+                    // إضافة تأثير
+                    this.style.transform = 'scale(1.2)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            });
+        }
+        
+        // تحديث رسالة المزاج
+        function updateMoodMessage(mood) {
+            const messages = {
+                happy: 'يوم سعيد! 😄 القرارات راح تكون ممتازة!',
+                excited: 'متحمس اليوم! 🤩 وقت مثالي للمغامرات!',
+                calm: 'هادئ ومرتاح 😌 قرارات حكيمة في الطريق!',
+                confused: 'محتار شوي؟ 🤔 قررلي راح يساعدك!',
+                stressed: 'متوتر اليوم؟ 😰 خذ نفس عميق وخلي قررلي يساعدك!'
+            };
+            
+            document.getElementById('moodMessage').textContent = messages[mood] || 'اختر مزاجك اليوم!';
+        }
+        
+        // الحصول على رسالة المزاج
+        function getMoodMessage(mood) {
+            const messages = {
+                happy: 'يوم سعيد! 😄',
+                excited: 'متحمس اليوم! 🤩',
+                calm: 'هادئ ومرتاح 😌',
+                confused: 'محتار شوي؟ 🤔',
+                stressed: 'متوتر اليوم؟ 😰'
+            };
+            
+            return messages[mood] || '';
+        }
+        
+        
+        
+        
+        
+    </script>
+    
+    <style>
+        .profile-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+        
+        .profile-header {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+        
+        .profile-avatar-section {
+            text-align: center;
+        }
+        
+        .profile-avatar {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+        
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid #00ffff;
+            object-fit: cover;
+        }
+        
+        .avatar-upload {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(45deg, #ff00ff, #cc00cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .avatar-upload:hover {
+            transform: scale(1.1);
+        }
+        
+        .profile-avatar-section h2 {
+            color: #00ffff;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        
+        .profile-avatar-section p {
+            color: #ffffff;
+            opacity: 0.8;
+            font-size: 1.1em;
+        }
+        
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+        }
+        
+        .stat-icon {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #00ffff;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #ffffff;
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        .profile-info {
+            display: grid;
+            gap: 30px;
+        }
+        
+        .info-section h3 {
+            color: #00ffff;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 10px;
+        }
+        
+        .info-grid {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .info-item label {
+            color: #00ffff;
+            font-weight: 600;
+        }
+        
+        .info-item span {
+            color: #ffffff;
+        }
+        
+        .bio-section {
+            position: relative;
+        }
+        
+        .bio-section textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            color: white;
+            font-size: 1em;
+            resize: vertical;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .bio-section textarea:focus {
+            outline: none;
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+        }
+        
+        .bio-counter {
+            text-align: left;
+            margin-top: 10px;
+            color: #ffffff;
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+        
+        .save-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #00ff00, #00cc00);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+        }
+        
+        /* CSS للسيرة الذاتية */
+        .bio-section {
+            position: relative;
+        }
+        
+        .bio-section textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            color: white;
+            font-size: 1em;
+            resize: vertical;
+            font-family: 'Cairo', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        .bio-section textarea:focus {
+            outline: none;
+            border-color: #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+        }
+        
+        .bio-section textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .bio-counter {
+            text-align: left;
+            margin-top: 10px;
+            color: #ffffff;
+            opacity: 0.7;
+            font-size: 0.9em;
+            direction: ltr;
+        }
+        
+        
+        
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff00ff, #8000ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .history-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .history-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .history-meta {
+                justify-content: center;
+            }
+        }
+        
+        /* الإنجازات */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .achievement-item.unlocked {
+            border-color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+        }
+        
+        .achievement-item.locked {
+            opacity: 0.6;
+            border-color: #666;
+        }
+        
+        .achievement-icon {
+            font-size: 2em;
+            text-align: center;
+            min-width: 50px;
+        }
+        
+        .achievement-info h4 {
+            color: #00ffff;
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+        }
+        
+        .achievement-info p {
+            color: #ffffff;
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .achievement-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.2em;
+        }
+        
+        /* متتبع المزاج */
+        .mood-tracker {
+            text-align: center;
+        }
+        
+        .mood-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .mood-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .mood-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .mood-btn.selected {
+            border-color: #00ffff;
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+        
+        .mood-message {
+            color: #ffffff;
+            font-size: 1.1em;
+            font-weight: 600;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        
+        /* حركات إضافية */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .achievement-item.unlocked .achievement-icon {
+            animation: pulse 2s infinite;
+        }
+        
+        /* شريط التقدم للإنجازات */
+        .achievement-progress {
+            margin-top: 10px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #00ff00);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            color: #00ffff;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        /* Responsive Design للجوال */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .user-avatar {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .user-avatar img {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .profile-card {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .profile-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .profile-info {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .profile-details h3 {
+                font-size: 1.2rem;
+            }
+            
+            .profile-details p {
+                font-size: 0.9rem;
+            }
+            
+            .achievements-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .achievement-item {
+                padding: 15px;
+            }
+            
+            .achievement-icon {
+                font-size: 2rem;
+            }
+            
+            .achievement-title {
+                font-size: 0.9rem;
+            }
+            
+            .achievement-description {
+                font-size: 0.8rem;
+            }
+            
+            .back-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 5px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .user-avatar {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .user-avatar img {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .profile-card {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .profile-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .profile-info {
+                gap: 10px;
+            }
+            
+            .profile-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .profile-details h3 {
+                font-size: 1.1rem;
+            }
+            
+            .profile-details p {
+                font-size: 0.8rem;
+            }
+            
+            .achievements-section h3 {
+                font-size: 1.1rem;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .achievement-item {
+                padding: 12px;
+            }
+            
+            .achievement-icon {
+                font-size: 1.5rem;
+            }
+            
+            .achievement-title {
+                font-size: 0.8rem;
+            }
+            
+            .achievement-description {
+                font-size: 0.7rem;
+            }
+            
+            .back-button {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+        
+    </style>
+</body>
+</html> 

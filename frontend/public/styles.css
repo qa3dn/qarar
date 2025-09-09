@@ -1,0 +1,1178 @@
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 50%, #000033 100%);
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* خلفية النجوم المتحركة */
+.stars, .stars2, .stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.stars {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white"/></svg>') repeat;
+    animation: stars 20s linear infinite;
+}
+
+.stars2 {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="0.5" fill="white"/></svg>') repeat;
+    animation: stars 15s linear infinite;
+}
+
+.stars3 {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="0.3" fill="white"/></svg>') repeat;
+    animation: stars 10s linear infinite;
+}
+
+@keyframes stars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100vh); }
+}
+
+/* القمر */
+.moon {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #f0f0f0 0%, #d0d0d0 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    z-index: 2;
+    animation: moonGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow {
+    from { box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
+    to { box-shadow: 0 0 50px rgba(255, 255, 255, 0.6); }
+}
+
+/* الصاروخ */
+.rocket {
+    position: fixed;
+    bottom: -100px;
+    left: 10%;
+    z-index: 3;
+    animation: rocketLaunch 8s ease-in infinite;
+}
+
+.rocket-body {
+    width: 40px;
+    height: 80px;
+    background: linear-gradient(45deg, #ff4444, #ff6666);
+    border-radius: 50% 50% 0 0;
+    position: relative;
+}
+
+.rocket-window {
+    width: 20px;
+    height: 20px;
+    background: #87ceeb;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    border: 2px solid #ffffff;
+}
+
+.rocket-flame {
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(to bottom, #ffaa00, #ff6600, #ff0000);
+    border-radius: 0 0 50% 50%;
+    position: absolute;
+    bottom: -25px;
+    left: 10px;
+    animation: flame 0.1s ease-in-out infinite alternate;
+}
+
+@keyframes flame {
+    from { height: 30px; }
+    to { height: 35px; }
+}
+
+@keyframes rocketLaunch {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-50vh) rotate(5deg); }
+    100% { transform: translateY(-100vh) rotate(0deg); }
+}
+
+/* الكواكب */
+.planet {
+    position: fixed;
+    border-radius: 50%;
+    z-index: 2;
+    animation: planetFloat 20s ease-in-out infinite;
+}
+
+.planet-1 {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.planet-2 {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    top: 60%;
+    right: 15%;
+    animation-delay: 5s;
+}
+
+.planet-3 {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, #a8e6cf, #dcedc1);
+    top: 30%;
+    right: 5%;
+    animation-delay: 10s;
+}
+
+@keyframes planetFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* الأقمار الصناعية */
+.satellite {
+    position: fixed;
+    z-index: 3;
+    animation: satelliteOrbit 15s linear infinite;
+}
+
+.satellite-1 {
+    top: 25%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.satellite-2 {
+    top: 70%;
+    right: 25%;
+    animation-delay: 7s;
+}
+
+.satellite-body {
+    width: 30px;
+    height: 15px;
+    background: linear-gradient(45deg, #666, #999);
+    border-radius: 10px;
+    position: relative;
+}
+
+.satellite-antenna {
+    width: 2px;
+    height: 20px;
+    background: #999;
+    position: absolute;
+    top: -15px;
+    left: 14px;
+}
+
+@keyframes satelliteOrbit {
+    0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+/* الحاوية الرئيسية */
+.container {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* الهيدر */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* أزرار تسجيل الدخول */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.login-btn, .register-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: white;
+}
+
+.login-btn {
+    background: linear-gradient(45deg, #00ff00, #00cc00);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.register-btn {
+    background: linear-gradient(45deg, #ff00ff, #cc00cc);
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+.login-btn:hover, .register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 255, 0, 0.5);
+}
+
+.register-btn:hover {
+    box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
+}
+
+/* معلومات المستخدم */
+.user-info {
+    position: relative;
+}
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #00ffff;
+}
+
+.user-avatar span {
+    color: #00ffff;
+    font-weight: 600;
+}
+
+/* قائمة المستخدم */
+.user-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #00ffff;
+    border-radius: 10px;
+    padding: 10px 0;
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    margin-top: 10px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+    background: rgba(0, 255, 255, 0.1);
+    color: #00ffff;
+}
+
+/* الشعار */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-icon {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    animation: diceRoll 2s ease-in-out infinite;
+}
+
+.logo-text {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes diceRoll {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(90deg); }
+    50% { transform: rotate(180deg); }
+    75% { transform: rotate(270deg); }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* النص الرئيسي */
+.hero-text {
+    margin-bottom: 50px;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.subtitle {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #4ecdc4;
+    text-shadow: 0 0 15px rgba(78, 205, 196, 0.5);
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+    to { text-shadow: 0 0 30px rgba(255, 107, 107, 0.8); }
+}
+
+/* الزر الرئيسي */
+.decision-section {
+    margin-bottom: 40px;
+}
+
+.decision-btn {
+    position: relative;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+    animation: btnPulse 2s ease-in-out infinite;
+    overflow: hidden;
+}
+
+.decision-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(255, 107, 107, 0.8);
+}
+
+.decision-btn:active {
+    transform: scale(0.95);
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.decision-btn:hover .btn-glow {
+    left: 100%;
+}
+
+@keyframes btnPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+/* بطاقة النتيجة */
+.result-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 500px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: cardAppear 0.5s ease-out;
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: cardGlow 2s ease-in-out infinite;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: iconFloat 2s ease-in-out infinite;
+}
+
+.decision-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.card-category {
+    font-size: 1rem;
+    color: #4ecdc4;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes cardGlow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* أزرار المشاركة */
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    animation: buttonsAppear 0.5s ease-out 0.3s both;
+}
+
+.share-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* زر المشاركة كصورة */
+.share-btn.image-share {
+    width: auto;
+    padding: 12px 20px;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+}
+
+.share-btn.image-share:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.6);
+}
+
+/* زر تويتر مع النص */
+.share-btn.twitter {
+    width: auto;
+    padding: 12px 20px;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #000000, #333333);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.share-btn.twitter:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.share-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.share-btn:hover::before {
+    left: 100%;
+}
+
+.share-btn:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp {
+    background: linear-gradient(45deg, #25d366, #128c7e);
+    color: white;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+}
+
+.twitter {
+    background: linear-gradient(45deg, #1da1f2, #0d8bd9);
+    color: white;
+}
+
+@keyframes buttonsAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تصنيف القرارات */
+.categories-section {
+    margin: 50px 0;
+}
+
+.categories-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #4ecdc4;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.category-btn:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.category-btn i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.category-btn span {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.category-btn.love:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.category-btn.food:hover {
+    border-color: #ffd93d;
+    box-shadow: 0 10px 30px rgba(255, 217, 61, 0.3);
+}
+
+.category-btn.work:hover {
+    border-color: #4ecdc4;
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+}
+
+.category-btn.crazy:hover {
+    border-color: #ff8e8e;
+    box-shadow: 0 10px 30px rgba(255, 142, 142, 0.3);
+}
+
+.category-btn.life:hover {
+    border-color: #a8e6cf;
+    box-shadow: 0 10px 30px rgba(168, 230, 207, 0.3);
+}
+
+/* قسم الأسئلة المخصصة */
+.custom-question-section {
+    margin: 50px 0;
+}
+
+/* القسم الرئيسي للأسئلة المخصصة */
+.custom-question-section.main-section {
+    margin: 30px 0 50px 0;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    border: 2px solid rgba(78, 205, 196, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(78, 205, 196, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-question-section.main-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.1), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
+}
+
+.custom-question-section.main-section .question-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #4ecdc4;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+    font-weight: 700;
+}
+
+.custom-question-section.main-section .question-input-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-question-section.main-section .question-input {
+    padding: 20px 25px;
+    font-size: 1.1rem;
+    border: 2px solid rgba(78, 205, 196, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(78, 205, 196, 0.2);
+    width: 100%;
+    max-width: 500px;
+}
+
+.custom-question-section.main-section .question-input:focus {
+    border-color: #4ecdc4;
+    box-shadow: 0 0 40px rgba(78, 205, 196, 0.4);
+    transform: scale(1.02);
+}
+
+.custom-question-section.main-section .ask-btn {
+    padding: 20px 30px;
+    font-size: 1.1rem;
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    box-shadow: 0 5px 20px rgba(78, 205, 196, 0.4);
+    border-radius: 30px;
+}
+
+.custom-question-section.main-section .ask-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.6);
+}
+
+.question-title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #4ecdc4;
+}
+
+.question-input-container {
+    display: flex;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.question-input {
+    flex: 1;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.question-input:focus {
+    outline: none;
+    border-color: #4ecdc4;
+    box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+}
+
+.question-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ask-btn {
+    padding: 15px 25px;
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ask-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(78, 205, 196, 0.5);
+}
+
+/* زر القرارات الجدية */
+.premium-section {
+    margin: 50px 0;
+}
+
+.premium-btn {
+    padding: 20px 40px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 50px;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    animation: premiumGlow 2s ease-in-out infinite;
+}
+
+.premium-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+}
+
+@keyframes premiumGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.3); }
+    50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+}
+
+/* الحالات المخفية */
+.hidden {
+    display: none;
+}
+
+/* رسائل التنبيه */
+.message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    z-index: 1000;
+    display: none;
+    animation: slideIn 0.3s ease;
+}
+
+.message-success {
+    background: linear-gradient(45deg, #00ff00, #00cc00);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
+.message-error {
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.message-info {
+    background: linear-gradient(45deg, #0080ff, #0040cc);
+    box-shadow: 0 0 20px rgba(0, 128, 255, 0.3);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* الاستجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        min-height: 100vh;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 15px 0;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logo-text {
+        font-size: 1.8rem;
+    }
+    
+    .auth-buttons {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .login-btn, .register-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .user-avatar {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .user-avatar img {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .main-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .question-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .question-input {
+        padding: 15px;
+        font-size: 1rem;
+        width: 100%;
+    }
+    
+    .decision-btn {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin: 20px 0;
+    }
+    
+    .category-card {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .question-input-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .result-card {
+        margin: 20px 0;
+        padding: 20px;
+    }
+    
+    .decision-text {
+        font-size: 1.2rem;
+        line-height: 1.4;
+    }
+    
+    .share-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .share-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .moon {
+        width: 50px;
+        height: 50px;
+        top: 20px;
+        right: 20px;
+    }
+    
+    .planet {
+        display: none;
+    }
+    
+    .rocket {
+        display: none;
+    }
+    
+    /* تحسينات إضافية للجوال */
+    .hero-text {
+        padding: 20px 0;
+    }
+    
+    .custom-question-section {
+        margin: 20px 0;
+        padding: 20px 15px;
+    }
+    
+    .decision-section {
+        margin: 20px 0;
+    }
+    
+    /* تحسين النصوص للجوال */
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    h1, h2, h3 {
+        line-height: 1.3;
+    }
+    
+    /* تحسين الأزرار للجوال */
+    button {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* تحسين النماذج للجوال */
+    input, textarea {
+        font-size: 16px; /* منع التكبير في iOS */
+    }
+}
+
+/* الاستجابة للشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .container {
+        padding: 5px;
+    }
+    
+    .header {
+        padding: 10px 0;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+    }
+    
+    .main-title {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .question-title {
+        font-size: 1.1rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .category-card {
+        padding: 12px;
+        font-size: 0.8rem;
+    }
+    
+    .question-input {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .decision-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .result-card {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .decision-text {
+        font-size: 1.1rem;
+    }
+    
+    .share-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .share-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .moon {
+        width: 40px;
+        height: 40px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    /* تحسينات إضافية للشاشات الصغيرة */
+    .auth-buttons {
+        gap: 8px;
+    }
+    
+    .login-btn, .register-btn {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .user-avatar {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .user-avatar img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* تحسين النصوص للشاشات الصغيرة */
+    body {
+        font-size: 13px;
+    }
+    
+    h1, h2, h3 {
+        font-size: 1.2em;
+    }
+    
+    /* تحسين المساحات */
+    .hero-text {
+        padding: 15px 0;
+    }
+    
+    .custom-question-section {
+        margin: 15px 0;
+        padding: 15px 10px;
+    }
+    
+    .decision-section {
+        margin: 15px 0;
+    }
+} 
