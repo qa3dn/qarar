@@ -2,12 +2,12 @@
   "name": "qarar-backend",
   "version": "1.0.0",
   "description": "قررلي - Backend API",
-  "main": "server.js",
+  "main": "index.js",
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "node start.js",
+    "start": "node index.js",
     "dev": "nodemon server.js",
     "build": "echo 'Backend build completed'",
     "prestart": "echo 'Starting Qarar Backend...'"
