@@ -8,4 +8,4 @@ cmds = ["npm i"]
 cmds = ["echo 'Build completed'"]
 
 [start]
-cmd = "node index.js"
+cmd = "node app.js"

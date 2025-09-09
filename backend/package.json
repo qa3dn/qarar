@@ -2,19 +2,19 @@
   "name": "qarar-backend",
   "version": "1.0.0",
   "description": "قررلي - Backend API",
-  "main": "index.js",
+  "main": "app.js",
   "bin": {
-    "qarar": "./index.js"
+    "qarar": "./app.js"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "dev": "nodemon server.js",
     "build": "echo 'Backend build completed'",
     "prestart": "echo 'Starting Qarar Backend...'",
-    "railway": "node index.js"
+    "railway": "node app.js"
   },
   "dependencies": {
     "express": "^4.18.2",
