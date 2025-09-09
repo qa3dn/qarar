@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "قررلي - Backend API",
   "main": "index.js",
+  "bin": {
+    "qarar": "./index.js"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
