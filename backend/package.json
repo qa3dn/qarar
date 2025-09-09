@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "قررلي - Backend API",
   "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "start": "node server.js",
+    "start": "node start.js",
     "dev": "nodemon server.js",
     "build": "echo 'Backend build completed'",
     "prestart": "echo 'Starting Qarar Backend...'"
