@@ -1,0 +1,31 @@
+[build]
+  # مجلد الملفات الجاهزة للرفع
+  publish = "public"
+  
+  # أمر البناء (اختياري - يمكن تركه فارغ)
+  command = "npm run build"
+  
+  # متغيرات البيئة
+  [build.environment]
+    NODE_VERSION = "18"
+
+# إعدادات إضافية
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# إعدادات إعادة التوجيه
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

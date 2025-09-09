@@ -5,7 +5,9 @@
   "main": "public/index.html",
   "scripts": {
     "start": "npx http-server public -p 3000",
-    "dev": "npx http-server public -p 3000 -o"
+    "dev": "npx http-server public -p 3000 -o",
+    "build": "echo 'Frontend build completed - static files ready'",
+    "preview": "npx http-server public -p 3000"
   },
   "dependencies": {
     "http-server": "^14.1.1"
