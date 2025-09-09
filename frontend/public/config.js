@@ -3,7 +3,7 @@ const CONFIG = {
     // غيّر هذا الرابط إلى رابط Backend الحقيقي بعد الرفع
     API_BASE_URL: window.location.hostname === 'localhost' 
         ? 'http://localhost:3000' 
-        : 'https://your-backend-url.railway.app', // غيّر هذا
+        : 'https://qarar-backend.onrender.com', // Render.com URL
     
     // إعدادات أخرى
     VERSION: '1.0.0',
