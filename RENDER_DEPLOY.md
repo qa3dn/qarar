@@ -16,7 +16,7 @@
 - **Root Directory**: `backend`
 - **Environment**: `Node`
 - **Build Command**: `npm install`
-- **Start Command**: `node run.js`
+- **Start Command**: `npm start`
 
 ### 4. **متغيرات البيئة:**
 ```

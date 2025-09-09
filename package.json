@@ -4,6 +4,7 @@
   "description": "قررلي - مشروع قرارات ذكي (Frontend + Backend)",
   "main": "README.md",
   "scripts": {
+    "start": "cd backend && npm start",
     "start:frontend": "cd frontend && npm start",
     "start:backend": "cd backend && npm start",
     "dev:frontend": "cd frontend && npm run dev",
