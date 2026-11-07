@@ -1,3 +1,15 @@
+![Qarar | Qarrarli](docs/assets/github-banner.svg)
+
+## Project overview
+
+An Arabic AI-assisted decision-making application with playful everyday choices and a more analytical mode. The project includes account authentication, user profiles, and decision history.
+
+**Stack:** JavaScript · HTML/CSS · Node.js · Express · MongoDB · OpenRouter.
+
+The repository keeps its existing MIT license. Follow the original Arabic setup guide below and provide your own environment configuration and provider credentials.
+
+---
+
 # 🎲 قررلي - موقع القرارات الذكي
 
 ## 📋 الوصف
